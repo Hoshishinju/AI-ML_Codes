@@ -1,0 +1,46 @@
+import pandas as pd
+import numpy as n
+d={ 'mpg':[18,15,18,16,17],'cylinders':[8,8,6,4,8],'displacement':[307,350,318,304,302],'hp':[130,165,150,150,140],'wt':[3504,3693,3436,3433,3449],
+   'acceleration':[12.0,11.5,11.0,12.0,10.5],'model year':[70,71,70,80,70],'origin':[1,1,1,1,1],'car name':['chevrolet','buick','plymouth','amc','ford']
+  }
+df=pd.DataFrame(d)
+sa=df.describe()
+print("\nStatistical details:\n",sa)
+ei=df[df['cylinders']==8]
+print("\nCars with eight cylinders:\n",ei)
+ye=df.groupby('model year')['model year'].count()
+print("\nCars manufactured each year:",ye)
+
+import pandas as pd
+from matplotlib import pyplot as plt
+import seaborn as sn
+d=pd.read_csv("D:\\mtcars.csv")
+
+#Histogram
+mpg=d['mpg']
+plt.hist(mpg,bins='auto',color='k',edgecolor='cyan')
+plt.xlabel('Miles per gallon(mpg)'); plt.ylabel('Frequency')
+plt.title('Highest frequency distribution')
+plt.show()
+
+#Scatter plot
+wt=d['wt']
+iv=range(len(d))
+plt.scatter(iv,mpg,color='g')
+plt.scatter(iv,wt,color='k')
+plt.title("Relationship between mpg and wt")
+plt.show()
+
+#Bar plot
+am=d['am'].value_counts()
+plt.bar(am.index,am.values,color='red',width=0.4)
+plt.xticks([0,1],('0-Automatic','1-Manual'))
+plt.xlabel('Transmission ');plt.ylabel('Frequency')
+plt.title('Transmission type of cars')
+plt.show()
+
+#Box plot
+sn.boxplot(mpg,color='lightblue')
+plt.xlabel('MPG');plt.ylabel('Values')
+plt.title('Box plot of mpg values')
+plt.show()
